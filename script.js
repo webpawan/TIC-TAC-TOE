@@ -4,6 +4,9 @@ let flag = false;
 let info = document.getElementsByClassName('info')[0];
 let box2 = document.getElementsByClassName('box2')[0];
 let btn = document.getElementById('btn');
+let winline = document.getElementById('win-line');
+let gif = document.getElementById('gif');
+
 // change sign 
 const changeturn = () => {
     return turn === 'X' ? '0' : 'X';
@@ -23,9 +26,31 @@ const win = () => {
     win.forEach(e => {
         if ((boxtext[e[0]].innerText === boxtext[e[1]].innerText)&&(boxtext[e[1]].innerText === boxtext[e[2]].innerText)&&(boxtext[e[1]].innerText !=="")) {
             flag = true;
+            gif.src = "/winner.webp";
             box2.className = 'box2';
+            winline.innerText = `${boxtext[e[0]].innerText} you win`;
+
+        } else {
+            
+    let boxtextall = document.querySelectorAll('.textbox');
+    let boxlength = boxtextall.length;
+    let count = 0;
+    for (let i = 0; i < boxtextall.length; i++){
+        if (boxtextall[i].innerText != "") {
+            count++;  
         }
+    }
+    if (count === boxlength) {
+        winline.innerText = "No one winner";
+        box2.className = 'box2';
+        gif.src = "/nowinner.gif";
+    }
+
+        }
+       
     })  
+
+
 }
 
 // main logic
@@ -42,8 +67,15 @@ Array.from(box).forEach(e => {
         if (!flag) {
             info.innerText = `now it's ${turn} turn`;
         }
+   
+ 
+
     })
+
 })
+
+
+
 
 // reset button
 btn.addEventListener('click', () => {
