@@ -40,10 +40,10 @@ const win = () => {
             count++;  
         }
     }
-    if (count === boxlength) {
+            if (count === boxlength) {
+                gif.src = "/nowinner.gif";
         winline.innerText = "No one winner";
         box2.className = 'box2';
-        gif.src = "/nowinner.gif";
     }
 
         }
